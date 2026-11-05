@@ -2,7 +2,6 @@
 let untyped = "";
 let typed = ""; //入力済み文字列を入れる
 let score = 0;
-let keyCount = 0;
 
 //必要なHTML要素の取得
 const untypedfield = document.getElementById("untyped");
@@ -62,10 +61,6 @@ const createText = () => {
 
 //キーの入力判定-------------------------------
 const keyPress = (e) => {
-  //キーが入力された数だけカウント
-  keyCount++;
-  typeCount.textContent = "入力回数:" + keyCount;
-
   //誤タイプの場合
   if (e.key !== untyped.substring(0, 1)) {
     wrap.classList.add("mistyped"); //誤タイプしたらmistypedを追加して背景色を変更する
@@ -83,6 +78,8 @@ const keyPress = (e) => {
   untyped = untyped.substring(1); //2文字目以降の文字列を再代入する
   typefield.textContent = typed; //typefieldのtextContentプロパティに代入
   untypedfield.textContent = untyped; //unfieldのtextContentプロパティに代入
+
+  typeCount.textContent = "入力回数:" + score;
 
   //テキストがなくなったら新しいテキストを表示
   if (untyped === "") {
